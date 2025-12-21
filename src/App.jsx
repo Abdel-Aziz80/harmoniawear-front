@@ -18,6 +18,8 @@ import Register from './pages/Register.jsx';
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import { Routes, Route } from "react-router-dom";
+import ProductDetail from "./pages/ProductDetail.jsx";
+import Checkout from "./pages/Checkout.jsx";
 
 function App() {
   return (

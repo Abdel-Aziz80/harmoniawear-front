@@ -69,10 +69,10 @@ export default function Register() {
   return (
     <main className="min-h-screen bg-harmonia-cream flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-black/5 p-6">
-        <h1 className="text-2xl font-montserrat font-bold text-harmonia-black text-center">Créer un compte</h1>
+        <h1 className="text-2xl font-montserrat font-bold text-harmonia-black text-center" data-testid="register-title">Créer un compte</h1>
         <p className="text-center text-harmonia-mauve mt-1">Rejoignez HarmoniaWear pour vos achats</p>
 
-        <form className="mt-6 space-y-4" onSubmit={onSubmit} autoComplete="on" noValidate>
+        <form className="mt-6 space-y-4" onSubmit={onSubmit} autoComplete="on" noValidate data-testid="register-form">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label htmlFor="register-first" className="block text-sm mb-1">Prénom</label>
@@ -83,6 +83,7 @@ export default function Register() {
                 autoComplete="given-name"
                 value={form.firstName}
                 onChange={onChange}
+                data-testid="register-firstname-input"
                 className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
               />
             </div>
@@ -95,6 +96,7 @@ export default function Register() {
                 autoComplete="family-name"
                 value={form.lastName}
                 onChange={onChange}
+                data-testid="register-lastname-input"
                 className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
               />
             </div>
@@ -112,6 +114,7 @@ export default function Register() {
               value={form.email}
               onChange={onChange}
               placeholder="vous@exemple.com"
+              data-testid="register-email-input"
               className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
               autoCapitalize="off"
               spellCheck={false}
@@ -127,6 +130,7 @@ export default function Register() {
               autoComplete="street-address"
               value={form.address}
               onChange={onChange}
+              data-testid="register-address-input"
               className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
             />
           </div>
@@ -144,6 +148,7 @@ export default function Register() {
                 value={form.password}
                 onChange={onChange}
                 placeholder="••••••••"
+                data-testid="register-password-input"
                 className="w-full border rounded-lg px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-harmonia-red"
                 autoCapitalize="off"
                 spellCheck={false}
@@ -153,6 +158,7 @@ export default function Register() {
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-sm opacity-70 hover:opacity-100"
                 onClick={() => setShow((s) => !s)}
                 aria-label={show ? "Masquer" : "Afficher"}
+                data-testid="toggle-password-visibility"
               >
                 {show ? "🙈" : "👁️"}
               </button>
@@ -170,6 +176,7 @@ export default function Register() {
               required
               value={form.confirm}
               onChange={onChange}
+              data-testid="register-confirm-input"
               className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
               autoCapitalize="off"
               spellCheck={false}
@@ -177,11 +184,12 @@ export default function Register() {
             />
           </div>
 
-          {err && <p className="text-red-600 text-sm">{err}</p>}
+          {err && <p className="text-red-600 text-sm" data-testid="register-error">{err}</p>}
 
           <button
             type="submit"
             disabled={loading}
+            data-testid="register-submit-btn"
             className={`w-full rounded-lg py-2 font-semibold text-white transition
               ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-harmonia-black hover:bg-harmonia-red"}`}
           >
@@ -191,7 +199,7 @@ export default function Register() {
 
         <div className="text-center text-sm mt-4">
           <span className="text-harmonia-mauve">Déjà inscrit ? </span>
-          <Link to="/login" className="text-harmonia-red underline">Se connecter</Link>
+          <Link to="/login" className="text-harmonia-red underline" data-testid="login-link">Se connecter</Link>
         </div>
       </div>
     </main>
