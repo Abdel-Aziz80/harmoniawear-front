@@ -93,7 +93,7 @@ export default function Femme() {
           {/* Sportswear Femme */}
           <section className="bg-white rounded-2xl p-6">
             <h2 className="text-2xl font-montserrat font-bold text-harmonia-black mb-4 text-center">
-              🏃‍♀️ SPORTSWEAR FEMME
+              SPORTSWEAR FEMME
             </h2>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
@@ -123,7 +123,7 @@ export default function Femme() {
           {/* Maternity Sport */}
           <section className="bg-gradient-to-br from-harmonia-mauve to-harmonia-red rounded-2xl p-6 text-harmonia-cream">
             <h2 className="text-2xl font-montserrat font-bold mb-4 text-center">
-              🤰 MATERNITY SPORT
+              MATERNITY SPORT
             </h2>
             <p className="text-center mb-4">
               Une collection spéciale conçue pour le confort des femmes enceintes pendant leurs activités sportives

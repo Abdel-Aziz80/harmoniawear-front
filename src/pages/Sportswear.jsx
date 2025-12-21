@@ -16,10 +16,10 @@ export default function Sportswear() {
         {/* Activités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {[
-            { name: '🏃‍♀️ FITNESS', desc: 'Training & Gym' },
-            { name: '🧘‍♀️ YOGA', desc: 'Souplesse & Confort' },
-            { name: '🚶‍♀️ VILLE', desc: 'Sportswear urbain' },
-            { name: '🏃‍♂️ RUNNING', desc: 'Performance' }
+            { name: 'FITNESS', desc: 'Training & Gym' },
+            { name: 'YOGA', desc: 'Souplesse & Confort' },
+            { name: 'VILLE', desc: 'Sportswear urbain' },
+            { name: 'RUNNING', desc: 'Performance' }
           ].map((sport, index) => (
             <div key={index} className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition">
               <div className="text-2xl mb-3">{sport.name.split(' ')[0]}</div>
@@ -34,7 +34,7 @@ export default function Sportswear() {
         {/* Maternity Sport */}
         <div className="bg-gradient-to-r from-harmonia-mauve to-harmonia-red rounded-2xl p-8 text-center text-harmonia-cream max-w-2xl mx-auto">
           <h2 className="text-2xl font-montserrat font-bold mb-4">
-            🤰 SPORTSWEAR MATERNITY
+            SPORTSWEAR MATERNITY
           </h2>
           <p className="mb-4">
             Une collection spéciale conçue pour le confort des femmes enceintes 

@@ -84,7 +84,7 @@ export default function Enfant() {
           {/* Tranches d'âge */}
           <section className="bg-white rounded-2xl p-6">
             <h2 className="text-2xl font-montserrat font-bold text-harmonia-black mb-6 text-center">
-              🧒 PAR TRANCHES D'ÂGE
+              PAR TRANCHES D'ÂGE
             </h2>
             <div className="grid grid-cols-1 gap-4 text-center">
               <div className="p-4 border border-harmonia-mauve rounded-lg">
@@ -105,7 +105,7 @@ export default function Enfant() {
           {/* Sportswear Enfant */}
           <section className="bg-gradient-to-br from-harmonia-red to-harmonia-mauve rounded-2xl p-6 text-harmonia-cream">
             <h2 className="text-2xl font-montserrat font-bold mb-4 text-center">
-              🏃‍♂️ SPORTSWEAR ENFANT
+              SPORTSWEAR ENFANT
             </h2>
             <p className="mb-4 text-center">
               Des vêtements techniques et confortables pour les activités de vos enfants
