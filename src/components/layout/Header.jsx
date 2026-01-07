@@ -1,8 +1,13 @@
 // src/components/layout/Navigation.jsx
+import SearchBar from "../ui/SearchBar.jsx"
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext.jsx"
 import CartIcon from "../ui/CartIcon.jsx"
+
+
+
+
 
 function NavItem({ to, label, end = false, onClick }) {
   return (
@@ -51,6 +56,19 @@ export default function Navigation() {
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-6">
+            {/* Admin Panel (si admin) */}
+            {user && user.role === "ADMIN" && (
+              <Link
+                to="/admin"
+                className="hover:text-harmonia-red transition-colors font-semibold"
+                title="Panel Admin"
+                aria-label="Panel Admin"
+                data-testid="admin-link"
+              >
+                🛠️ ADMIN
+              </Link>
+            )}
+
             {/* Recherche (future route /search si besoin) */}
             <button
               className="hover:text-harmonia-red transition-colors"
@@ -58,8 +76,8 @@ export default function Navigation() {
               aria-label="Rechercher"
               type="button"
             >
-              🔍
             </button>
+            <SearchBar />
 
             {/* Compte : /account si connecté, sinon /login */}
             <Link

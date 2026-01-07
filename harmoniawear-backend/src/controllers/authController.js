@@ -26,7 +26,7 @@ exports.register = async (req, res) => {
 
   const hash = await bcrypt.hash(password, 10);
 
-  // Si ton schéma Prisma n’a pas de champ "role", enlève "role" ci-dessous
+  
   const user = await prisma.user.create({
     data: { email, password: hash, firstName, lastName, address, role: "CUSTOMER" }
   });

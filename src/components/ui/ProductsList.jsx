@@ -1,7 +1,7 @@
 // src/components/ui/ProductsList.jsx
 import { useEffect, useState } from "react";
-import { apiGet } from "../../services/api";   // ajuste si nécessaire
-import ProductCard from "./ProductCard";       // ton composant existant
+import { apiGet } from "../../services/api";   
+import ProductCard from "./ProductCard";
 
 export default function ProductsList({ className = "", onAddToCart }) {
   const [data, setData] = useState([]);

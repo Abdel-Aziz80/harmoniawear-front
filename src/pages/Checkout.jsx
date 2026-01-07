@@ -1,7 +1,7 @@
 // src/pages/Checkout.jsx
 import { useState } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
-import { useCart } from "../contexts/useCart";
+import { useCart } from "../contexts/useCart.jsx";
 import { useAuth } from "../contexts/AuthContext";
 import { apiPost } from "../services/api";
 import { formatPrice } from "../utils/formatters";

@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 import { cartReducer, initialState } from './cartReducer.js'
-import { CartContext } from './CartContext.js'
+import { CartContext } from './CartContext.jsx'
 
 // Provider Component seulement
 export function CartProvider({ children }) {

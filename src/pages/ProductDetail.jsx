@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { apiGet } from "../services/api";
-import { useCart } from "../contexts/useCart";
+import { useCart } from "../contexts/CartContext.jsx";
 import { formatPrice, labelCollection, labelCategory } from "../utils/formatters";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 
@@ -35,23 +35,21 @@ export default function ProductDetail() {
     return () => { off = true; };
   }, [id]);
 
-  const handleAddToCart = () => {
+   const handleAddToCart = () => {
     if (!product) return;
-    
-    // Ajouter le produit avec les options sélectionnées
-    const productWithOptions = {
-      ...product,
-      selectedSize,
-      selectedColor,
-      quantity
-    };
-    
-    for (let i = 0; i < quantity; i++) {
-      addItem(productWithOptions);
-    }
-    
-    // Retour au panier ou afficher notification
-    navigate("/cart\"");
+
+    // Construire l'item au format attendu par CartContext
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.images?.[0] || null,
+      size: selectedSize || null,      // <-- clés attendues : size / color
+      color: selectedColor || null,
+      quantity,                        // <-- une seule fois, pas de boucle
+    });
+
+    navigate("/cart");
   };
 
   if (loading) {
@@ -71,7 +69,7 @@ export default function ProductDetail() {
               {error?.message || "Produit introuvable"}
             </p>
             <Link
-              to="/\"
+              to="/"
               className="inline-block bg-harmonia-black text-white px-6 py-2 rounded-lg hover:bg-harmonia-red transition"
               data-testid="back-home-btn"
             >
@@ -88,7 +86,7 @@ export default function ProductDetail() {
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="mb-6 text-sm" data-testid="breadcrumb">
-          <Link to="/\" className="text-harmonia-mauve hover:text-harmonia-red">
+          <Link to="/" className="text-harmonia-mauve hover:text-harmonia-red">
             Accueil
           </Link>
           <span className="mx-2 text-harmonia-mauve">/</span>
@@ -241,7 +239,7 @@ export default function ProductDetail() {
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     disabled={quantity <= 1}
                     data-testid="quantity-decrease-btn"
-                    className="w-10 h-10 bg-harmonia-mauve text-white rounded-lg hover:bg-opacity-80 transition disabled:opacity-50 disabled:cursor-not-allowed\"
+                    className="w-10 h-10 bg-harmonia-mauve text-white rounded-lg hover:bg-opacity-80 transition disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     -
                   </button>
@@ -273,7 +271,7 @@ export default function ProductDetail() {
                     : "bg-harmonia-black text-white hover:bg-harmonia-red"
                 }`}
               >
-                {product.stock === 0 ?"Rupture de stock" : "Ajouter au panier"}
+                {product.stock === 0 ? "Rupture de stock" : "Ajouter au panier"}
               </button>
             </div>
           </div>
