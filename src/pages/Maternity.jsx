@@ -15,7 +15,7 @@ export default function Maternity() {
 
         <div className="bg-white rounded-2xl p-8 text-center max-w-2xl mx-auto">
           <h2 className="text-2xl font-montserrat font-bold text-harmonia-black mb-4">
-            🎀 Collection en préparation
+            Collection en préparation
           </h2>
           <p className="text-harmonia-mauve mb-6">
             Nous travaillons sur une collection maternity unique, 

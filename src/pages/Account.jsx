@@ -9,20 +9,20 @@ const statusLabels = {
   pending: "En attente",
   confirmed: "Confirmée",
   shipped: "Expédiée",
-  delivered: "Livrée",
+  delivered: "Livrée"
 };
 
 export default function Account() {
   const { user, logout } = useAuth();
 
-  const [profile, setProfile] = useState(user || null);
+  const [profile, setProfile] = useState(user);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
-    address: user?.address || "",
+    address: user?.address || ""
   });
   const [updateError, setUpdateError] = useState("");
   const [updateSuccess, setUpdateSuccess] = useState(false);
@@ -34,32 +34,32 @@ export default function Account() {
       return;
     }
 
-    (async () => {
-      try {
-        // Profil
-        const me = await apiGet("/api/auth/me");
+    // Charger le profil et les commandes
+    Promise.all([
+      apiGet("/api/auth/me"),
+      apiGet("/api/orders")
+    ])
+      .then(([profileData, ordersData]) => {
         if (!off) {
-          setProfile(me);
+          setProfile(profileData);
+          setOrders(ordersData);
           setFormData({
-            firstName: me.firstName || "",
-            lastName: me.lastName || "",
-            address: me.address || "",
+            firstName: profileData.firstName || "",
+            lastName: profileData.lastName || "",
+            address: profileData.address || ""
           });
         }
-      } catch {
-        if (!off) setProfile(user);
-      }
-
-      // Commandes (si la route n’existe pas encore, on ignore l’erreur)
-      try {
-        const list = await apiGet("/api/orders");
-        if (!off) setOrders(Array.isArray(list) ? list : []);
-      } catch {
-        if (!off) setOrders([]);
-      }
-
-      if (!off) setLoading(false);
-    })();
+      })
+      .catch((e) => {
+        console.error("Erreur chargement:", e);
+        if (!off) {
+          setProfile(user);
+          setOrders([]);
+        }
+      })
+      .finally(() => {
+        if (!off) setLoading(false);
+      });
 
     return () => {
       off = true;
@@ -75,9 +75,7 @@ export default function Account() {
 
     try {
       const result = await apiPut("/api/users/me", formData);
-      // selon ton controller, c’est { user } ou l’objet user direct
-      const updated = result?.user ?? result;
-      setProfile(updated);
+      setProfile(result.user);
       setEditMode(false);
       setUpdateSuccess(true);
       setTimeout(() => setUpdateSuccess(false), 3000);
@@ -89,7 +87,7 @@ export default function Account() {
   return (
     <main className="min-h-screen bg-harmonia-cream">
       <div className="container mx-auto px-4 py-8">
-        <h1
+        <h1 
           className="text-2xl md:text-3xl font-montserrat font-bold text-harmonia-black mb-6"
           data-testid="account-title"
         >
@@ -104,10 +102,13 @@ export default function Account() {
             <section className="bg-white rounded-xl shadow p-6">
               <div className="text-5xl mb-4">👤</div>
               <p className="text-sm text-harmonia-mauve mb-1">Connecté en tant que</p>
-              <p className="font-semibold break-words" data-testid="user-email">
+              <p 
+                className="font-semibold break-words"
+                data-testid="user-email"
+              >
                 {profile?.email}
               </p>
-              <p
+              <p 
                 className="text-xs mt-2 inline-block bg-black/5 px-2 py-1 rounded"
                 data-testid="user-role"
               >
@@ -142,7 +143,7 @@ export default function Account() {
                 </div>
 
                 {updateSuccess && (
-                  <div
+                  <div 
                     className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg"
                     data-testid="update-success-message"
                   >
@@ -158,9 +159,7 @@ export default function Account() {
                         <input
                           type="text"
                           value={formData.firstName}
-                          onChange={(e) =>
-                            setFormData({ ...formData, firstName: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                           data-testid="first-name-input"
                           className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
                         />
@@ -170,9 +169,7 @@ export default function Account() {
                         <input
                           type="text"
                           value={formData.lastName}
-                          onChange={(e) =>
-                            setFormData({ ...formData, lastName: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                           data-testid="last-name-input"
                           className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
                         />
@@ -181,9 +178,7 @@ export default function Account() {
                         <label className="block text-sm font-semibold mb-1">Adresse</label>
                         <textarea
                           value={formData.address}
-                          onChange={(e) =>
-                            setFormData({ ...formData, address: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                           rows={3}
                           data-testid="address-input"
                           className="w-full border rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-harmonia-red"
@@ -203,7 +198,7 @@ export default function Account() {
                             setFormData({
                               firstName: profile?.firstName || "",
                               lastName: profile?.lastName || "",
-                              address: profile?.address || "",
+                              address: profile?.address || ""
                             });
                           }}
                           data-testid="cancel-edit-btn"
@@ -237,10 +232,7 @@ export default function Account() {
                     </div>
                     <div>
                       <span className="text-sm text-harmonia-mauve">Adresse :</span>
-                      <p
-                        className="font-semibold whitespace-pre-line"
-                        data-testid="display-address"
-                      >
+                      <p className="font-semibold whitespace-pre-line" data-testid="display-address">
                         {profile?.address || "-"}
                       </p>
                     </div>
@@ -271,6 +263,7 @@ export default function Account() {
                       <div
                         key={order.id}
                         className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition"
+                        data-testid={`order-${order.id}`}
                       >
                         <div className="flex justify-between items-start mb-3">
                           <div>
@@ -289,14 +282,14 @@ export default function Account() {
                                 ? "bg-blue-100 text-blue-700"
                                 : "bg-yellow-100 text-yellow-700"
                             }`}
+                            data-testid={`order-status-${order.id}`}
                           >
                             {statusLabels[order.status] || order.status}
                           </span>
                         </div>
 
                         <div className="text-sm text-harmonia-mauve mb-3">
-                          {order.items?.length || 0} article
-                          {(order.items?.length || 0) > 1 ? "s" : ""}
+                          {order.items?.length || 0} article{(order.items?.length || 0) > 1 ? 's' : ''}
                         </div>
 
                         <div className="flex justify-between items-center">
@@ -305,6 +298,7 @@ export default function Account() {
                           </p>
                           <Link
                             to={`/order-confirmation/${order.id}`}
+                            data-testid={`view-order-btn-${order.id}`}
                             className="text-harmonia-black hover:text-harmonia-red text-sm font-semibold hover:underline"
                           >
                             Voir détails →

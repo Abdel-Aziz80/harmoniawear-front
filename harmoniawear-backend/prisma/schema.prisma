@@ -66,11 +66,11 @@ model Product {
   name        String
   description String?
   price       Float
-  category    Category // ← était String
-  collection  Collection // ← était String
+  category    Category 
+  collection  Collection 
   images      String[]
   stock       Int        @default(0)
-  sizes       Size[] // ← était String[], optionnel mais conseillé
+  sizes       String[] 
   colors      String[]
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt

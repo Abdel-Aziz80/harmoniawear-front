@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import ProductCard from '../components/ui/ProductCard.jsx'
 import { useProducts } from '../contexts/ProductsContext.jsx'
-import { groupBy } from "@/utils/helpers.js";
+import { groupBy } from "../utils/helpers.js";
 
 const ORDER = ['maternity', 'streetwear', 'sportswear', 'muslim']
 const TITLES = {
@@ -175,7 +175,7 @@ export default function Collections() {
         ) : (
           <div className="text-center py-12 bg-white rounded-2xl">
             <p className="text-harmonia-mauve mb-3">Aucun produit ne correspond aux filtres.</p>
-            <Link to="" className="inline-block bg-harmonia-red text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition">
+            <Link to="/" className="inline-block bg-harmonia-red text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition">
               Retour à l'accueil
             </Link>
           </div>

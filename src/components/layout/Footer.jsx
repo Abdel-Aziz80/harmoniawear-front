@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="bg-harmonia-black text-harmonia-cream mt-20">
@@ -22,12 +24,12 @@ export default function Footer() {
           <div>
             <h3 className="font-montserrat font-bold text-lg mb-4">NAVIGATION</h3>
             <ul className="space-y-2 text-harmonia-mauve">
-              <li><a href="#shop" className="hover:text-harmonia-red transition">Boutique</a></li>
-              <li><a href="#maternity" className="hover:text-harmonia-red transition">Maternity</a></li>
-              <li><a href="#muslim" className="hover:text-harmonia-red transition">Muslim</a></li>
-              <li><a href="#sportswear" className="hover:text-harmonia-red transition">Sportswear</a></li>
-              <li><a href="#streetwear" className="hover:text-harmonia-red transition">Streetwear</a></li>
-              <li><a href="#about" className="hover:text-harmonia-red transition">À propos</a></li>
+              <li><a href="/home" className="hover:text-harmonia-red transition">Boutique</a></li>
+              <li><a href="/maternity" className="hover:text-harmonia-red transition">Maternity</a></li>
+              <li><a href="/muslim" className="hover:text-harmonia-red transition">Muslim</a></li>
+              <li><a href="/sportswear" className="hover:text-harmonia-red transition">Sportswear</a></li>
+              <li><a href="/streetwear" className="hover:text-harmonia-red transition">Streetwear</a></li>
+              <li><a href="/about" className="hover:text-harmonia-red transition">À propos</a></li>
             </ul>
           </div>
 
@@ -48,9 +50,9 @@ export default function Footer() {
             © 2025 HarmoniaWear. Tous droits réservés.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-harmonia-mauve hover:text-harmonia-red transition">Mentions légales</a>
-            <a href="#" className="text-harmonia-mauve hover:text-harmonia-red transition">CGV</a>
-            <a href="#" className="text-harmonia-mauve hover:text-harmonia-red transition">Confidentialité</a>
+            <Link to="/legalMentions" className="text-harmonia-mauve hover:text-harmonia-red transition">Mentions légales</Link>
+            <Link to="/cgv" className="text-harmonia-mauve hover:text-harmonia-red transition">CGV</Link>
+            <Link to="/privacy" className="text-harmonia-mauve hover:text-harmonia-red transition">Confidentialité</Link>
           </div>
 
           {/* Développement */}

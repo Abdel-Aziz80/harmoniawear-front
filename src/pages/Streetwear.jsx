@@ -52,7 +52,7 @@ export default function Streetwear() {
         {/* Inspiration */}
         <div className="bg-harmonia-black text-harmonia-cream rounded-2xl p-8 text-center max-w-3xl mx-auto">
           <h2 className="text-2xl font-montserrat font-bold mb-4">
-            STYLE URBAN
+            🏙️ STYLE URBAN
           </h2>
           <p className="text-harmonia-mauve">
             Des pièces qui capturent l'essence de la rue, 

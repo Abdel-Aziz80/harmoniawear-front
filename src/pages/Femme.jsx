@@ -30,13 +30,15 @@ export default function Femme() {
       <div className="container mx-auto px-4 py-8">
         {/* … contenu identique … */}
         <section className="mb-12">
-          <h2 className="text-2xl font-montserrat font-bold text-harmonia-black mb-6">
+          <h2 className="text-2xl font-montserrat font-bold text-harmonia-black mb-6 text-center">
             NOS PRODUITS FEMME
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {productsFemme.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+              {productsFemme.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </section>
 

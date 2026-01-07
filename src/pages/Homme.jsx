@@ -79,7 +79,7 @@ export default function Homme() {
         {/* Collection Muslim Homme détaillée */}
         <section className="bg-white rounded-2xl p-8 max-w-4xl mx-auto">
           <h2 className="text-2xl font-montserrat font-bold text-harmonia-black mb-6 text-center">
-            COLLECTION MUSLIM HOMME
+            👔 COLLECTION MUSLIM HOMME
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
             <div className="p-4 border border-harmonia-mauve rounded-lg">

@@ -8,9 +8,10 @@ module.exports = function requireAuth(req, res, next) {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: payload.sub, role: payload.role };
+    // payload: { sub, role, iat, exp }
+    req.user = { id: payload.sub, role: payload.role || "CUSTOMER" };
     next();
-  } catch (e) {
-    return res.status(401).json({ error: "Token invalide" });
+  } catch {
+    res.status(401).json({ error: "Token invalide" });
   }
 };
