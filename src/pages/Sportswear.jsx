@@ -15,20 +15,49 @@ export default function Sportswear() {
 
         {/* Activités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {[
-            { name: 'FITNESS', desc: 'Training & Gym' },
-            { name: 'YOGA', desc: 'Souplesse & Confort' },
-            { name: 'VILLE', desc: 'Sportswear urbain' },
-            { name: 'RUNNING', desc: 'Performance' }
-          ].map((sport, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition">
-              <div className="text-2xl mb-3">{sport.name.split(' ')[0]}</div>
-              <h3 className="font-montserrat font-bold text-harmonia-black mb-2">
-                {sport.name.split(' ')[1]}
-              </h3>
-              <p className="text-harmonia-mauve text-sm">{sport.desc}</p>
+          <a href="#fitness" className="group">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+              <div className="h-48 bg-harmonia-mauve flex items-center justify-center group-hover:scale-105 transition">
+                <span className="text-harmonia-cream text-lg font-montserrat font-bold">FITNESS</span>
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-harmonia-black text-sm">Training & Gym</p>
+              </div>
             </div>
-          ))}
+          </a>
+
+          <a href="#YOGA-femme" className="group">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+              <div className="h-48 bg-harmonia-black flex items-center justify-center group-hover:scale-105 transition">
+                <span className="text-harmonia-cream text-lg font-montserrat font-bold">YOGA</span>
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-harmonia-black text-sm">Souplesse & Confort</p>
+              </div>
+            </div>
+          </a>
+
+          <a href="#VILLE-femme" className="group">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+              <div className="h-48 bg-harmonia-red flex items-center justify-center group-hover:scale-105 transition">
+                <span className="text-harmonia-cream text-lg font-montserrat font-bold">VILLE</span>
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-harmonia-black text-sm">Sportswear urbain</p>
+              </div>
+            </div>
+          </a>
+
+          <a href="#RUNNING-femme" className="group">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+              <div className="h-48 bg-gradient-to-r from-harmonia-black to-harmonia-mauve flex items-center justify-center group-hover:scale-105 transition">
+                <span className="text-harmonia-cream text-lg font-montserrat font-bold">RUNNING</span>
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-harmonia-black text-sm">Performance</p>
+              </div>
+            </div>
+          </a>
         </div>
 
         {/* Maternity Sport */}
